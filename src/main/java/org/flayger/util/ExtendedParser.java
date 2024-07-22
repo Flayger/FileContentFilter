@@ -31,6 +31,6 @@ public class ExtendedParser extends DefaultParser {
 
             nextArgument = options.hasOption(arg) && options.getOption(arg).hasArg();
         }
-        return super.parse(options, knownArguments.toArray(new String[knownArguments.size()]));
+        return super.parse(options, knownArguments.toArray(new String[0]));
     }
 }
