@@ -56,6 +56,7 @@ public class Main {
         } catch (IOException e) {
             System.out.println("ошибка при записи в файл " + e.getMessage());
         }
+
         try {
             myFileWriter.close();
         } catch (IOException e) {

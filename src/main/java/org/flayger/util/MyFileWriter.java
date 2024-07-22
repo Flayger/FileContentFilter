@@ -10,8 +10,8 @@ import java.math.BigInteger;
 public class MyFileWriter {
 
     private BufferedWriter integerWriter;
-    private  BufferedWriter floatWriter;
-    private  BufferedWriter stringWriter;
+    private BufferedWriter floatWriter;
+    private BufferedWriter stringWriter;
     private final String outputPath;
     private final String outputPrefix;
     private final boolean isAppend;
@@ -26,7 +26,11 @@ public class MyFileWriter {
         String integerFileName = "integers.txt";
         File integerContentFile = new File(outputPath + '/' + outputPrefix + integerFileName);
         if (!integerContentFile.exists()) {
-            integerContentFile.getParentFile().mkdirs(); // Will create parent directories if not exists
+            boolean isCreated = integerContentFile.getParentFile().mkdirs();
+            if (!isCreated) {
+                throw new IOException("ошибка при создании директории для файла вывода для целых");
+            }
+
         }
         if (integerWriter == null) {
             this.integerWriter = new BufferedWriter(new FileWriter(integerContentFile, isAppend));
@@ -39,7 +43,10 @@ public class MyFileWriter {
         String floatFileName = "floats.txt";
         File floatContentFile = new File(outputPath + '/' + outputPrefix + floatFileName);
         if (!floatContentFile.exists()) {
-            floatContentFile.getParentFile().mkdirs(); // Will create parent directories if not exists
+            boolean isCreated = floatContentFile.getParentFile().mkdirs();
+            if (!isCreated) {
+                throw new IOException("ошибка при создании директории для файла вывода для вещественных");
+            }
         }
         if (floatWriter == null) {
             this.floatWriter = new BufferedWriter(new FileWriter(floatContentFile, isAppend));
@@ -52,7 +59,10 @@ public class MyFileWriter {
         String stringFileName = "strings.txt";
         File stringContentFile = new File(outputPath + '/' + outputPrefix + stringFileName);
         if (!stringContentFile.exists()) {
-            stringContentFile.getParentFile().mkdirs(); // Will create parent directories if not exists
+            boolean isCreated = stringContentFile.getParentFile().mkdirs();
+            if (!isCreated) {
+                throw new IOException("ошибка при создании директории для файла вывода для строк");
+            }
         }
         if (stringWriter == null) {
             this.stringWriter = new BufferedWriter(new FileWriter(stringContentFile, isAppend));
