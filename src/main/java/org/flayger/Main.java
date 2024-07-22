@@ -10,8 +10,6 @@ import org.flayger.statistics.FullStatistics;
 import java.io.*;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.net.URISyntaxException;
-import java.nio.file.Path;
 import java.util.List;
 import java.util.Locale;
 import java.util.NoSuchElementException;
@@ -135,7 +133,7 @@ public class Main {
         //синтаксический анализ аргументов командной строки
         ExtendedParser commandLineParser = new ExtendedParser();
         CommandLine cmd;
-        cmd = commandLineParser.parse(options, args, false);
+        cmd = commandLineParser.parse(options, args);
 
         //обработка пришедших аргументов командной строки
         String outputPath = cmd.getParsedOptionValue("o", "");

@@ -9,19 +9,12 @@ import java.math.BigInteger;
 
 public class MyFileWriter {
 
-    BufferedWriter integerWriter;
-    BufferedWriter floatWriter;
-    BufferedWriter stringWriter;
-
-    String outputPath;
-
-    String outputPrefix;
-
-    boolean isAppend;
-
-    private static String stringFileName = "strings.txt";
-    private static String integerFileName = "integers.txt";
-    private static String floatFileName = "floats.txt";
+    private BufferedWriter integerWriter;
+    private  BufferedWriter floatWriter;
+    private  BufferedWriter stringWriter;
+    private  String outputPath;
+    private  String outputPrefix;
+    private  boolean isAppend;
 
     public MyFileWriter(String outputPath, String outputPrefix, boolean isAppend) {
         this.outputPath = outputPath;
@@ -30,6 +23,7 @@ public class MyFileWriter {
     }
 
     public void write(BigInteger input) throws IOException {
+        String integerFileName = "integers.txt";
         File integerContentFile = new File(outputPath + '/' + outputPrefix + integerFileName);
         if (!integerContentFile.exists()) {
             integerContentFile.getParentFile().mkdirs(); // Will create parent directories if not exists
@@ -42,6 +36,7 @@ public class MyFileWriter {
     }
 
     public void write(BigDecimal input) throws IOException {
+        String floatFileName = "floats.txt";
         File floatContentFile = new File(outputPath + '/' + outputPrefix + floatFileName);
         if (!floatContentFile.exists()) {
             floatContentFile.getParentFile().mkdirs(); // Will create parent directories if not exists
@@ -54,6 +49,7 @@ public class MyFileWriter {
     }
 
     public void write(String input) throws IOException {
+        String stringFileName = "strings.txt";
         File stringContentFile = new File(outputPath + '/' + outputPrefix + stringFileName);
         if (!stringContentFile.exists()) {
             stringContentFile.getParentFile().mkdirs(); // Will create parent directories if not exists

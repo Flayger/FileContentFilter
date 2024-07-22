@@ -17,10 +17,8 @@ public class ExtendedParser extends DefaultParser {
     }
 
     @Override
-    public CommandLine parse(Options options, String[] arguments, boolean stopAtNonOption) throws ParseException {
-        if(stopAtNonOption) {
-            return parse(options, arguments);
-        }
+    public CommandLine parse(Options options, String[] arguments) throws ParseException {
+
         List<String> knownArguments = new ArrayList<>();
         notParsedArgs.clear();
         boolean nextArgument = false;
