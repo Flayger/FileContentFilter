@@ -12,9 +12,9 @@ public class MyFileWriter {
     private BufferedWriter integerWriter;
     private  BufferedWriter floatWriter;
     private  BufferedWriter stringWriter;
-    private  String outputPath;
-    private  String outputPrefix;
-    private  boolean isAppend;
+    private final String outputPath;
+    private final String outputPrefix;
+    private final boolean isAppend;
 
     public MyFileWriter(String outputPath, String outputPrefix, boolean isAppend) {
         this.outputPath = outputPath;
