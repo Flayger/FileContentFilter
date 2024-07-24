@@ -23,13 +23,18 @@ public class FullStatistics implements Statistics {
     private BigInteger stringsMaxLength;
     private BigInteger stringsMinLength;
 
+    /*
+    мне не нравится, что методы очень похожи друг на друга. сделать generics по number для decimal и integer?
+    или вынести статистику и работу с определенным типом данных в отдельный класс и там уже определить
+     */
+
     @Override
     public void update(BigDecimal floatData) {
         floatsCount++;
         checkMaxMin(floatData);
 
         floatsSum = floatsSum.add(floatData);
-        floatsAverage = floatsSum.divide(BigDecimal.valueOf(integersCount), RoundingMode.HALF_EVEN);
+        //floatsAverage = floatsSum.divide(BigDecimal.valueOf(integersCount), RoundingMode.HALF_EVEN);
     }
 
     private void checkMaxMin(BigDecimal floatData) {
@@ -53,10 +58,12 @@ public class FullStatistics implements Statistics {
         checkMaxMin(intData);
 
         integersSum = integersSum.add(intData);
-        integersAverage = integersSum.divide(BigInteger.valueOf(integersCount));
+        //integersAverage = integersSum.divide(BigInteger.valueOf(integersCount));
+        //посчитать в конце
     }
 
     private void checkMaxMin(BigInteger intData) {
+        //enum передавать, с длинной строк, чтобы в 1 методе проверять длинну макс мин
         if (integersMaxValue == null || integersMinValue == null) {
             integersMaxValue = intData;
             integersMinValue = intData;
@@ -79,11 +86,19 @@ public class FullStatistics implements Statistics {
 
     @Override
     public void show() {
+        //чтобы не считать много раз - только перед выводом считать среднее значение для интов и вещественных
+        calcAverage();
+
         System.out.printf("integers stats - count - %S, min - %S, max - %S, average - %S, sum - %S \n", integersCount, integersMinValue, integersMaxValue, integersAverage, integersSum);
 
         System.out.printf("floats stats - count - %S, min - %S, max - %S, average - %S, sum - %S \n", floatsCount, floatsMinValue, floatsMaxValue, floatsAverage, floatsSum);
 
         System.out.printf("strings stats - count - %S, minLength - %S, maxLength - %S \n", stringsCount, stringsMinLength, stringsMaxLength);
+    }
+
+    private void calcAverage() {
+        integersAverage = integersSum.divide(BigInteger.valueOf(integersCount));
+        floatsAverage = floatsSum.divide(BigDecimal.valueOf(integersCount), RoundingMode.HALF_EVEN);
     }
 
     private void checkMaxMin(String stringData) {
