@@ -1,13 +1,10 @@
 package org.flayger.statistics;
 
+import org.flayger.util.DataType;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 
 public interface Statistics {
 
-    void update(BigInteger input);
-    void update(BigDecimal input);
-    void update(String input);
-
-    void show();
+    void update(BigDecimal value, DataType type);
+    void print();
 }
